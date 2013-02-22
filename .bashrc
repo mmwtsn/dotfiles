@@ -49,7 +49,7 @@ function my_PS1 {
     local open_bracket="\[\033[01;32m\]["
     local my_directory="\[\033[01;32m\]\W"
     local close_bracket="\[\033[01;32m\]]"
-    local my_git_branch="\[\033[01;30m\]`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\/`"
+    local my_git_branch='\[\033[01;30m\]`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\/`'
     local prompt_symbol="\[\033[01;34m\]$"
     local input_colors="\[\033[01;00m\] "
     export PS1="$open_bracket$my_directory$close_bracket$my_git_branch$prompt_symbol$input_colors"
