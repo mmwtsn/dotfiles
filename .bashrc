@@ -32,9 +32,6 @@ alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 
-# PS1
-export PS1="\[\e[0;34m\][\[\e[m\]\[\e[0;37m\]\W\[\e[m\]\[\e[0;34m\]] \[\e[m\]"
-
 # define variables to print path as URL
 HTTP="http://localhost:8080"
 REST=$(echo $(pwd -P | sed 's:/var/www/html::'))
@@ -44,3 +41,17 @@ alias url="echo $HTTP$REST"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# customize PS1 with Git integration
+# function idea credit: shaman.sir via StackOverflow.com
+# permalink: http://stackoverflow.com/a/6086978
+function my_PS1 {
+    local open_bracket="\[\033[01;32m\]["
+    local my_directory="\[\033[01;32m\]\W"
+    local close_bracket="\[\033[01;32m\]]"
+    local my_git_branch="\[\033[01;30m\]`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\/`"
+    local prompt_symbol="\[\033[01;34m\]$"
+    local input_colors="\[\033[01;00m\] "
+    export PS1="$open_bracket$my_directory$close_bracket$my_git_branch$prompt_symbol$input_colors"
+}
+my_PS1
