@@ -7,6 +7,16 @@ fi
 
 # maxwell's preferences
 
+# colors
+black="\[\033[01;30m\]"
+red="\[\033[01;31m\]"
+green="\[\033[01;32m\]"
+yellow="\[\033[01;33m\]"
+blue="\[\033[01;34m\]"
+magenta="\[\033[01;35m\]"
+cyan="\[\033[01;36m\]"
+white="\[\033[01;37m\]"
+
 # bash aliases
 alias ..="cd .."
 alias ..2="cd ../.."
@@ -19,7 +29,7 @@ alias brc="vim ~/.bashrc"
 alias vim="vim -p"
 alias chromecss="vim ~/Library/Application\ Support/Google/Chrome/Default/User\ StyleSheets/Custom.css"
 
-# vm aliases
+# vagrant aliases
 alias dbox="~/bin/dropbox.py"
 alias boom="sudo /usr/sbin/setenforce 0 && sudo /etc/init.d/network restart"
 
@@ -32,26 +42,30 @@ alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 
-# define variables to print path as URL
-HTTP="http://localhost:8080"
-REST=$(echo $(pwd -P | sed 's:/var/www/html::'))
-alias url="echo $HTTP$REST"
-
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# customize PS1 with Git integration
+# current git branch less the leading asterisk and space
+function current_git_branch {
+  git branch 2> /dev/null | grep ^* | sed 's/^..//' | sed 's/\(.*\)/\(\1\)/'
+}
+
+# ps1
 # function idea credit: shaman.sir via StackOverflow.com
 # permalink: http://stackoverflow.com/a/6086978
 function my_PS1 {
-    local open_bracket="\[\033[01;32m\]["
-    local my_directory="\[\033[01;32m\]\W"
-    local close_bracket="\[\033[01;32m\]]"
-    local my_git_branch='\[\033[01;30m\]`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\/`'
-    local prompt_symbol="\[\033[01;34m\]$"
-    local input_colors="\[\033[01;00m\] "
-    export PS1="$open_bracket$my_directory$close_bracket$my_git_branch$prompt_symbol$input_colors"
+    local open_bracket="["
+    local current_dir="\W"
+    local close_bracket="]"
+    local prompt="$ "
+    export PS1="$green$open_bracket$current_dir$close_bracket$black\$(current_git_branch)$blue$prompt$white"
 }
 my_PS1
+
+# vagrant-specific settings
+if [[ $USER = "vagrant" ]]; then
+  alias ls="ls --color"
+fi
+
