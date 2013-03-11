@@ -4,6 +4,7 @@ set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set backspace=2
 set autoindent
 set smartindent
 set nocompatible
@@ -31,7 +32,12 @@ call pathogen#infect('~/.vim/bundle')
 syntax on
 filetype plugin indent on
 
+" required by snipMate plugin
+filetype plugin on
+
 let g:indent_guides_auto_colors = 0
+let g:snippets_dir = "~/.vim/bundle/vim-snipmate/snippets"
+
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
