@@ -59,13 +59,13 @@ function my_PS1 {
     local open_bracket="["
     local current_dir="\W"
     local close_bracket="]"
-    local prompt="$ "
-    export PS1="$green$open_bracket$current_dir$close_bracket$black\$(current_git_branch)$blue$prompt$white"
+    local prompt="⚡ "
+    export PS1="$magenta$open_bracket$current_dir$close_bracket$black\$(current_git_branch)$white$prompt$white"
 }
 my_PS1
 
 # vagrant-specific settings
 if [[ $USER = "vagrant" ]]; then
   alias ls="ls --color"
+  `dbox start`
 fi
-
