@@ -29,10 +29,6 @@ alias brc="vim ~/.bashrc"
 alias vim="vim -p"
 alias chromecss="vim ~/Library/Application\ Support/Google/Chrome/Default/User\ StyleSheets/Custom.css"
 
-# vagrant aliases
-alias dbox="~/bin/dropbox.py"
-alias boom="sudo /usr/sbin/setenforce 0 && sudo /etc/init.d/network restart"
-
 # git aliases
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gb="git branch"
@@ -65,7 +61,10 @@ function my_PS1 {
 my_PS1
 
 # vagrant-specific settings
+alias dbox="~/bin/dropbox.py"
+alias boom="sudo /usr/sbin/setenforce 0 && sudo /etc/init.d/network restart"
+
 if [[ $USER = "vagrant" ]]; then
   alias ls="ls --color"
-  `dbox start`
+  `~/bin/dropbox.py start`
 fi
