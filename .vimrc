@@ -7,9 +7,11 @@ set shiftwidth=2
 set backspace=2
 set autoindent
 set smartindent
-set nocompatible
+set nocp
 set hlsearch
 set ruler
+
+colors ir_black
 
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.sass set filetype=sass
