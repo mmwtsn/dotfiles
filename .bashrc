@@ -27,7 +27,9 @@ alias sw="sass --watch --compass ds_campaign.sass:ds_campaign.css"
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias vim="vim -p"
-alias chromecss="vim ~/Library/Application\ Support/Google/Chrome/Default/User\ StyleSheets/Custom.css"
+alias cc="compass compile"
+alias todos="grep -ri 'todo' . | wc -l"
+alias notes="grep -ri 'note' . | wc -l"
 
 # git aliases
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -41,7 +43,16 @@ alias gpp="git pull --rebase && git push"
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
+
+# Add PostgreSQL to PATH
+PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+
+# Add ImageMagick to PATH
+export MAGICK_HOME="/opt/local"
+export PATH="$MAGICK_HOME/bin:$PATH"
+
 
 # current git branch less the leading asterisk and space
 function current_git_branch {
@@ -51,20 +62,33 @@ function current_git_branch {
 # ps1
 # function idea credit: shaman.sir via StackOverflow.com
 # permalink: http://stackoverflow.com/a/6086978
-function my_PS1 {
+function mac_PS1 {
+    local environment="x"
     local open_bracket="["
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$magenta$open_bracket$current_dir$close_bracket$black\$(current_git_branch)$white$prompt$white"
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$magenta$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$blue"
 }
-my_PS1
+mac_PS1
+
+function vagrant_PS1 {
+    local environment="v"
+    local open_bracket="["
+    local current_dir="\W"
+    local close_bracket="]"
+    local prompt="⚡ "
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$green$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$blue"
+}
 
 # vagrant-specific settings
 alias dbox="~/bin/dropbox.py"
 alias boom="sudo /usr/sbin/setenforce 0 && sudo /etc/init.d/network restart"
 
 if [[ $USER = "vagrant" ]]; then
+  vagrant_PS1
   alias ls="ls --color"
+  alias dcc="drush cc all"
+  alias dccjs="drush cc css-js"
   `~/bin/dropbox.py start`
 fi
