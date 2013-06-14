@@ -10,6 +10,7 @@ set smartindent
 set nocp
 set hlsearch
 set ruler
+set splitright " open new horizontally split windows to the right
 
 colors ir_black
 
@@ -18,30 +19,29 @@ au BufRead,BufNewFile *.sass set filetype=sass
 
 set directory^=$HOME/.swp//
 
+" custom mappings
 imap ii <Esc>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
-nnoremap tn :ntabnew<CR>
 
-map cc :w \| :silent !compass compile<CR>:redraw!<CR>
+" tab switching
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
 
-if has("mouse")
-      set mouse=a
-endif
+" split switching
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
 
 filetype off
 call pathogen#infect('~/.vim/bundle')
 syntax on
-filetype plugin indent on
 
 " required by snipMate plugin
 filetype plugin on
 
-let g:indent_guides_auto_colors = 0
 let g:snippets_dir = "~/.vim/bundle/vim-snipmate/snippets"
 
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+" Highlight trailing whitespace
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
