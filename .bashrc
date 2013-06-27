@@ -31,6 +31,10 @@ alias cc="compass compile"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
 
+# temporary aliases
+alias pfp="cd ~/Documents/ds_code/create-and-share/"
+alias css="cd ~/Sites/css-wp/wp-content/themes/css-theme/"
+
 # git aliases
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gb="git branch"
@@ -68,7 +72,7 @@ function mac_PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$magenta$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$blue"
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$magenta$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
 }
 mac_PS1
 
@@ -78,7 +82,7 @@ function vagrant_PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$green$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$blue"
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$green$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
 }
 
 # vagrant-specific settings
