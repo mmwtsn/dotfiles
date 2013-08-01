@@ -28,6 +28,7 @@ alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias vim="vim -p"
 alias cc="compass compile"
+alias cw="compass watch"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
 
@@ -38,11 +39,12 @@ alias css="cd ~/Sites/css-wp/wp-content/themes/css-theme/"
 # git aliases
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gb="git branch"
-alias gs="git status"
+alias gs="git status -sb"
 alias ga="git add"
 alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
+alias gpm="git fetch --prune && git pull" # Git prune, merge
 
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
