@@ -27,8 +27,8 @@ alias sw="sass --watch --compass ds_campaign.sass:ds_campaign.css"
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias vim="vim -p"
-alias cc="compass compile"
-alias cw="compass watch"
+alias cc="compass compile --force -s compressed"
+alias cw="compass watch -s compressed"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
 
@@ -44,7 +44,7 @@ alias ga="git add"
 alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
-alias gpm="git fetch --prune && git pull" # Git prune, merge
+alias gpm="git fetch --all --prune && git pull" # Git prune, merge
 
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -74,7 +74,7 @@ function mac_PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$magenta$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$red$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
 }
 mac_PS1
 
@@ -84,7 +84,7 @@ function vagrant_PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$green$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
+    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$blue$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
 }
 
 # vagrant-specific settings
