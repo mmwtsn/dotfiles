@@ -7,6 +7,7 @@
 " Display line numbers
 set number
 
+set ic
 set hlsearch
 set nocp
 set encoding=utf-8
@@ -48,6 +49,7 @@ set cuc cul
 " Set filetypes for SCSS, SASS and ERB
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.sass set filetype=sass
+au BufRead,BufNewFile Gemfile set filetype=ruby
 
 " Specify swap file directory
 set directory^=$HOME/.swp//
