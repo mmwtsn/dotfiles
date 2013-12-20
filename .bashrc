@@ -5,8 +5,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# maxwell's preferences
-
 # colors
 black="\[\033[01;30m\]"
 red="\[\033[01;31m\]"
@@ -29,22 +27,22 @@ alias brc="vim ~/.bashrc"
 alias vim="vim -p"
 alias cc="compass compile --force -s compressed"
 alias cw="compass watch -s compressed"
+alias gw="grunt watch"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
 
-# temporary aliases
-alias pfp="cd ~/Documents/ds_code/create-and-share/"
-alias css="cd ~/Sites/css-wp/wp-content/themes/css-theme/"
+# launch iOS Simulator in OS X
+alias ios='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/'
 
 # git aliases
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gb="git branch"
-alias gs="git status -sb"
+alias gs="git status -sb --ignore-submodules"
 alias ga="git add"
 alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
-alias gpm="git fetch --all --prune && git pull" # Git prune, merge
+alias gpm="git checkout dev && git fetch --all --prune && git pull" # Git prune, merge
 
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -55,10 +53,12 @@ PATH=$PATH:$HOME/.rvm/bin
 # Add PostgreSQL to PATH
 PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 
+# Add MongoDB to PATH
+export PATH=$PATH:/usr/local/mongodb/bin
+
 # Add ImageMagick to PATH
 export MAGICK_HOME="/opt/local"
 export PATH="$MAGICK_HOME/bin:$PATH"
-
 
 # current git branch less the leading asterisk and space
 function current_git_branch {
