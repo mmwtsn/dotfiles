@@ -4,11 +4,18 @@
 " @mmwtsn
 "
 
-" Display line numbers
+" Display line relative numbers
 set number
+set relativenumber
+
+" Allow for intentation-based folding
+set foldmethod=indent
+set nofoldenable
+nnoremap <Space> za
 
 set ic
 set hlsearch
+set incsearch
 set nocp
 set encoding=utf-8
 
@@ -21,6 +28,10 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set cindent
+
+" TODO - these were used by an old plug-in; still needed?
+filetype indent on
+filetype plugin on
 
 " Fix delete issue in Linux
 set backspace=2"
@@ -46,10 +57,14 @@ let g:ctrlp_cmd = 'CtrlP'
 set shortmess+=I
 
 " Color scheme
-colors ir_black
+colors base16-tomorrow
+colors furnes-tomorrow
+set background=dark
+hi TabLineFill term=bold cterm=bold ctermbg=0
 
 " Vertical and horizontal cursor settings
-set cuc cul
+"set cuc cul
+set cul
 
 " Set filetypes for various file formats for correct syntax highlighting
 au BufRead,BufNewFile *.scss set filetype=scss
@@ -94,18 +109,19 @@ let g:vim_markdown_folding_disabled=1
 map <C-j> :set paste<CR>
 map <C-k> :set nopaste<CR>
 
+" Hide library, package and other misc. files from Vim/Ctrl-P
+set wildignore+=*/vendor/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
+
 " Pathogen settings for plug-in management
 filetype off
 call pathogen#infect('~/.vim/bundle')
 call pathogen#helptags()
 syntax on
 
-" required by snipMate plugin
-filetype indent on
-filetype plugin on
-
-let g:snippets_dir = "~/.vim/bundle/vim-snipmate/snippets"
-
 " Highlight trailing whitespace
-hi ExtraWhitespace ctermbg=red guibg=red
+hi ExtraWhitespace ctermbg=darkblue guibg=darkblue
 match ExtraWhitespace /\(\S\+\)\@<=\s\+$/
+
+" Refreshing Vimroom settings when the window is resized
+autocmd VimResized * VimroomToggle
+autocmd VimResized * VimroomToggle
