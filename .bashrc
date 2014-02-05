@@ -5,6 +5,14 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# allow for Vim-like command line movement
+set -o vi
+
+# set default cd path for quick auto-complete of ~/Code directory
+if test "#{PS1+set}"; then
+  export CDPATH=$HOME/Code:CDPATH
+fi
+
 # colors
 black="\[\033[01;30m\]"
 red="\[\033[01;31m\]"
@@ -21,15 +29,18 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ls="ls -G"
-alias sw="sass --watch --compass ds_campaign.sass:ds_campaign.css"
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
+alias prc="vim ~/.bash_profile"
 alias vim="vim -p"
 alias cc="compass compile --force -s compressed"
 alias cw="compass watch -s compressed"
-alias gw="grunt watch"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
+alias shot="shotgun"
+
+# Default all GitHub Gists to private with a description
+alias g="gist -p -d"
 
 # launch iOS Simulator in OS X
 alias ios='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/'
@@ -44,6 +55,35 @@ alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 alias gpm="git checkout dev && git fetch --all --prune && git pull" # Git prune, merge
 
+function update() {
+  if git status | grep 'nothing to commit' > /dev/null; then
+    echo -e "\033[01;33mChecking out dev..\033[01;37m"
+    git checkout dev
+    echo -e "\033[01;33mFetching upstream..\033[01;37m"
+    git fetch upstream
+    echo -e "\033[01;33mRebasing dev..\033[01;37m"
+    git rebase upstream/dev
+    echo -e "\033[01;33mUpdating fork..\033[01;37m"
+    git push origin dev
+    echo -e "\033[01;32m\nDone!\033[01;37m"
+  else
+    echo -e "\033[1;31mWoops. Commit your changes before updating.\033[01;37m"
+  fi
+}
+
+function reboot() {
+  $(cd ~/Code/do-something/PRODUCTION/)
+  echo -e "\033[01;33mSuspending Vagrant..\033[01;37m"
+  vagrant suspend
+  echo -e "\033[01;33mHalting Vagrant.\033[01;37m"
+  vagrant halt
+  echo -e "\033[01;33mRestarting Vagrant..\033[01;37m"
+  vagrant up
+  echo -e "\033[01;33mChecking status..\033[01;37m"
+  vagrant status
+  echo -e "\033[01;32m\nDone!\033[01;37m"
+}
+
 # add RVM to path
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
@@ -56,6 +96,9 @@ PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 # Add MongoDB to PATH
 export PATH=$PATH:/usr/local/mongodb/bin
 
+# Grunt auto-completion
+eval "$(grunt --completion=bash)"
+
 # Add ImageMagick to PATH
 export MAGICK_HOME="/opt/local"
 export PATH="$MAGICK_HOME/bin:$PATH"
@@ -65,36 +108,36 @@ function current_git_branch {
   git branch 2> /dev/null | grep ^* | sed 's/^..//' | sed 's/\(.*\)/\(\1\)/'
 }
 
+# Git auto-complete
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 # ps1
 # function idea credit: shaman.sir via StackOverflow.com
 # permalink: http://stackoverflow.com/a/6086978
 function mac_PS1 {
-    local environment="x"
+    local environment="maxwell"
     local open_bracket="["
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
     export PS1="$black$open_bracket$environment$close_bracket$open_bracket$red$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
+    export PS1="$blue[$current_dir]$yellow\$(current_git_branch)$red$prompt$white"
 }
 mac_PS1
 
 function vagrant_PS1 {
-    local environment="v"
+    local environment="vagrant"
+    local delimiter=":"
     local open_bracket="["
     local current_dir="\W"
     local close_bracket="]"
-    local prompt="⚡ "
+    local prompt=" ⚡ "
     export PS1="$black$open_bracket$environment$close_bracket$open_bracket$blue$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
+    export PS1="$blue[$current_dir]$black\$(current_git_branch)$blue$prompt$red"
 }
-
-# vagrant-specific settings
-alias dbox="~/bin/dropbox.py"
-alias boom="sudo /usr/sbin/setenforce 0 && sudo /etc/init.d/network restart"
 
 if [[ $USER = "vagrant" ]]; then
   vagrant_PS1
-  alias ls="ls --color"
-  alias dcc="drush cc all"
-  alias dccjs="drush cc css-js"
-  `~/bin/dropbox.py start`
 fi
