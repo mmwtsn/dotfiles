@@ -55,8 +55,17 @@ alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 alias gpm="git checkout dev && git fetch --all --prune && git pull" # Git prune, merge
 
+# Abstract path to local installation of the Do Something site
+export PRODUCTION_PATH='/Users/maxwell/Code/do-something/production'
+
+# Update Git environment by pulling upstream/dev, rebasing and pushing to origin dev
 function update() {
+  # Run this in the appropriate directory
+  $(cd $PRODUCTION_PATH)
+
+  # Ensure that your working tree is clean
   if git status | grep 'nothing to commit' > /dev/null; then
+    # Run the update sequence
     echo -e "\033[01;33mChecking out dev..\033[01;37m"
     git checkout dev
     echo -e "\033[01;33mFetching upstream..\033[01;37m"
@@ -67,12 +76,16 @@ function update() {
     git push origin dev
     echo -e "\033[01;32m\nDone!\033[01;37m"
   else
+    # Failed to update due to dirty working tree
     echo -e "\033[1;31mWoops. Commit your changes before updating.\033[01;37m"
   fi
 }
 
+# Gracefully reboot Vagrant
 function reboot() {
-  $(cd ~/Code/do-something/PRODUCTION/)
+  # Run this in the appropriate directory
+  $(cd $PRODUCTION_PATH)
+
   echo -e "\033[01;33mSuspending Vagrant..\033[01;37m"
   vagrant suspend
   echo -e "\033[01;33mHalting Vagrant.\033[01;37m"
