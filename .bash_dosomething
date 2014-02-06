@@ -1,0 +1,65 @@
+# Helper function to run change the directory of the subshell
+function dspath() {
+  # Run this in the appropriate directory
+  $(cd $PRODUCTION_PATH)
+}
+
+# Update Git environment by pulling upstream/dev, rebasing and pushing to origin dev
+function dsup() {
+  # Run this in the appropriate directory
+  dspath
+
+  # Ensure that your working tree is clean
+  if git status | grep 'nothing to commit' > /dev/null; then
+    # Run the update sequence
+    echo -e "\033[01;33mChecking out dev..\033[01;37m"
+    git checkout dev
+    echo -e "\033[01;33mFetching upstream..\033[01;37m"
+    git fetch upstream
+    echo -e "\033[01;33mRebasing dev..\033[01;37m"
+    git rebase upstream/dev
+    echo -e "\033[01;33mUpdating fork..\033[01;37m"
+    git push origin dev
+    echo -e "\033[01;32m[ Git Update Complete ]\n\033[01;37m"
+  else
+    # Failed to update due to dirty working tree
+    echo -e "\033[1;31m[ Error: unsaved changes ]\n\033[01;37m"
+  fi
+}
+
+# Gracefully reboot Vagrant
+function dsreboot() {
+  # Run this in the appropriate directory
+  dspath
+
+  echo -e "\033[01;33mSuspending Vagrant..\033[01;37m"
+  vagrant suspend
+  echo -e "\033[01;33mHalting Vagrant.\033[01;37m"
+  vagrant halt
+  echo -e "\033[01;33mRestarting Vagrant..\033[01;37m"
+  vagrant up
+  echo -e "\033[01;33mChecking status..\033[01;37m"
+  vagrant status
+  echo -e "\033[01;32m [ Vagrant Reboot Complete ]\n\033[01;37m"
+}
+
+# Rebuild the development environment
+function dsrebuild() {
+  # Run this in the appropriate directory
+  dspath
+
+  echo -e "\033[01;33mRebuilding your environment..\033[01;37m"
+  vagrant ssh -c "cd /vagrant && ds build --install --dev"
+  echo -e "\033[01;32m[ Drupal Rebuild Complete ]\n\033[01;37m"
+}
+
+# Do everything
+function dsall() {
+  # Run this in the appropriate directory
+  dspath
+
+  dsup
+  dsreboot
+  vagrant provision
+  dsrebuild
+}

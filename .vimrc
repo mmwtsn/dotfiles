@@ -80,6 +80,8 @@ au BufRead,BufNewFile Guardfile set filetype=ruby
 au BufRead,BufNewFile Rakefile set filetype=ruby
 au BufRead,BufNewFile Gruntfile set filetype=javascript
 
+au BufRead,BufNewFile .bash_* set filetype=sh
+
 " Specify swap file directory
 set directory^=$HOME/.swp//
 
