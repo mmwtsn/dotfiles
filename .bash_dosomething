@@ -1,7 +1,33 @@
+# Helper function to quickly access Neue (in Paraneue)
+function neue() {
+  dspath
+  cd ./html/profiles/dosomething/themes/dosomething/paraneue/paraneue/bower_components/pattern-library/scss
+  pwd
+}
+
+# Helper function to quickly access Paraneue
+function paraneue() {
+  dspath
+  cd ./html/profiles/dosomething/themes/dosomething/paraneue/
+  pwd
+}
+
+# Helper function to quickly access Paraneue Dosomething
+function paraneueds() {
+  dspath
+  cd ./lib/themes/dosomething/paraneue_dosomething/
+  pwd
+}
+
 # Helper function to run change the directory of the subshell
 function dspath() {
   # Run this in the appropriate directory
-  $(cd $PRODUCTION_PATH)
+  if [ -n "$DS_PRODUCTION" ]; then
+    cd $DS_PRODUCTION
+  else
+    echo -e "\033[1;31m[ DS_PRODUCTION variable not set! ]\n\033[01;37m"
+    # How do I kill this function?
+  fi
 }
 
 # Update Git environment by pulling upstream/dev, rebasing and pushing to origin dev
@@ -40,7 +66,7 @@ function dsreboot() {
   vagrant up
   echo -e "\033[01;33mChecking status..\033[01;37m"
   vagrant status
-  echo -e "\033[01;32m [ Vagrant Reboot Complete ]\n\033[01;37m"
+  echo -e "\033[01;32m[ Vagrant Reboot Complete ]\n\033[01;37m"
 }
 
 # Rebuild the development environment
@@ -59,7 +85,7 @@ function dsall() {
   dspath
 
   dsup
-  dsreboot
   vagrant provision
+  dsreboot
   dsrebuild
 }
