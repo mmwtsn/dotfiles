@@ -15,7 +15,6 @@ nnoremap <Space> za
 
 set ic
 set hlsearch
-set incsearch
 set nocp
 set encoding=utf-8
 
