@@ -53,6 +53,22 @@ function dsup() {
   fi
 }
 
+# Guard against my inability to recall my own function names
+function dsupdate() {
+  dsup
+}
+
+#
+# TODO
+# Add this to the current dsup() function above:
+# if the user is not currently on dev, return them to their
+# branch before exiting -- rebase, too!
+#
+function gtest() {
+  local current_branch=`git branch | grep '*' | sed 's/* //'`
+  echo $current_branch
+}
+
 # Gracefully reboot Vagrant
 function dsreboot() {
   # Run this in the appropriate directory
@@ -67,6 +83,11 @@ function dsreboot() {
   echo -e "\033[01;33mChecking status..\033[01;37m"
   vagrant status
   echo -e "\033[01;32m[ Vagrant Reboot Complete ]\n\033[01;37m"
+}
+
+# Guard against my inability to recall my own function names
+function dsrestart() {
+  dsreboot
 }
 
 # Rebuild the development environment
@@ -88,4 +109,13 @@ function dsall() {
   vagrant provision
   dsreboot
   dsrebuild
+}
+
+# Haaalp
+function dshelp() {
+  printf "%-20s %-20s\n" `tput setaf 3`dsup `tput setaf 7`-\ Update\ production\ codebase\ from\ remote\ on\ host\ machine
+  printf "%-20s %-20s\n" `tput setaf 3`dsreboot `tput setaf 7`-\ Reboots\ the\ VM
+  printf "%-20s %-20s\n" `tput setaf 3`dsrestart `tput setaf 7`-\ Calls\ dsreboot
+  printf "%-20s %-20s\n" `tput setaf 3`dsrebuild `tput setaf 7`-\ Rebuild\ development\ environment
+  printf "%-20s %-20s\n" `tput setaf 3`dsall `tput setaf 7`-\ Update\ production\ codebase,\ rebuild\ development\ environment\ and\ restart\ the\ VM
 }
