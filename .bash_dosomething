@@ -46,10 +46,10 @@ function dsup() {
     git rebase upstream/dev
     echo -e "\033[01;33mUpdating fork..\033[01;37m"
     git push origin dev
-    echo -e "\033[01;32m[ Git Update Complete ]\n\033[01;37m"
+    echo -e "\033[01;32mGit Update Complete\033[01;37m"
   else
     # Failed to update due to dirty working tree
-    echo -e "\033[1;31m[ Error: unsaved changes ]\n\033[01;37m"
+    echo -e "\033[1;31mError: unsaved changes\033[01;37m"
   fi
 }
 
@@ -82,7 +82,7 @@ function dsreboot() {
   vagrant up
   echo -e "\033[01;33mChecking status..\033[01;37m"
   vagrant status
-  echo -e "\033[01;32m[ Vagrant Reboot Complete ]\n\033[01;37m"
+  echo -e "\033[01;32mVagrant Reboot Complete\033[01;37m"
 }
 
 # Guard against my inability to recall my own function names
@@ -97,7 +97,7 @@ function dsrebuild() {
 
   echo -e "\033[01;33mRebuilding your environment..\033[01;37m"
   vagrant ssh -c "cd /vagrant && ds build --install --dev"
-  echo -e "\033[01;32m[ Drupal Rebuild Complete ]\n\033[01;37m"
+  echo -e "\033[01;32mDrupal Rebuild Complete\033[01;37m"
 }
 
 # Do everything
