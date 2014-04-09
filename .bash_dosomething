@@ -1,7 +1,14 @@
 # Helper function to quickly access Neue (in Paraneue)
+function neueds() {
+  dspath
+  cd ./html/profiles/dosomething/themes/dosomething/paraneue/paraneue/bower_components/neue/scss
+  pwd
+}
+
+# Helper function to quickly access Neue (standalone)
 function neue() {
   dspath
-  cd ./html/profiles/dosomething/themes/dosomething/paraneue/paraneue/bower_components/pattern-library/scss
+  cd ../neue
   pwd
 }
 
@@ -20,6 +27,8 @@ function paraneueds() {
 }
 
 # Helper function to run change the directory of the subshell
+# @TODO - One should be able to call "ds *" and pass a variety
+#         of paths or flags directly, e.g. "ds /" or "ds build"
 function dspath() {
   # Run this in the appropriate directory
   if [ -n "$DS_PRODUCTION" ]; then
@@ -28,6 +37,17 @@ function dspath() {
     echo -e "\033[1;31m[ DS_PRODUCTION variable not set! ]\n\033[01;37m"
     # How do I kill this function?
   fi
+}
+
+# Helper function to update the front-end libraries in the DS development environment
+function dsgrunt() {
+  # Run this in the appropriate directory
+  dspath
+
+  # SSH into the VM and update Grunt
+  echo -e "\033[01;33mOpening SSH tunnel..\033[01;37m"
+  vagrant ssh -c "cd /vagrant && ds grunt"
+  echo -e "\033[01;32m✓ Grunt & Co. Updated Successfully."
 }
 
 # Update Git environment by pulling upstream/dev, rebasing and pushing to origin dev
@@ -46,10 +66,12 @@ function dsup() {
     git rebase upstream/dev
     echo -e "\033[01;33mUpdating fork..\033[01;37m"
     git push origin dev
-    echo -e "\033[01;32mGit Update Complete\033[01;37m"
+    echo -e "\033[01;33mReturning to paraneue_dosomething/..\033[01;37m"
+    paraneueds
+    echo -e "\033[01;32m✓ Git Updated Successfully.\033[01;37m"
   else
     # Failed to update due to dirty working tree
-    echo -e "\033[1;31mError: unsaved changes\033[01;37m"
+    echo -e "\033[1;31m✗ Commit or stash changes before proceeding.\033[01;37m"
   fi
 }
 
@@ -82,7 +104,19 @@ function dsreboot() {
   vagrant up
   echo -e "\033[01;33mChecking status..\033[01;37m"
   vagrant status
-  echo -e "\033[01;32mVagrant Reboot Complete\033[01;37m"
+  echo -e "\033[01;32m✓ Vagrant Reboot Complete\033[01;37m"
+}
+
+# Prune local and remote merged branches (off dev)
+function dscleanup() {
+  # Run this in the appropriate directory
+  dspath
+
+  echo -e "\033[01;33mPruning remote branches..\033[01;37m"
+  git fetch --all --prune
+  echo -e "\033[01;33mPruning local branches..\033[01;37m"
+  git branch --merged dev | grep -v 'dev' | xargs git branch -d
+  echo -e "\033[01;32m✓ Branch Cleanup Complete\033[01;37m"
 }
 
 # Guard against my inability to recall my own function names
@@ -96,8 +130,24 @@ function dsrebuild() {
   dspath
 
   echo -e "\033[01;33mRebuilding your environment..\033[01;37m"
-  vagrant ssh -c "cd /vagrant && ds build --install --dev"
-  echo -e "\033[01;32mDrupal Rebuild Complete\033[01;37m"
+  vagrant ssh -c "cd /vagrant && ds build"
+  echo -e "\033[01;33mPulling down the latest db from staging..\033[01;37m"
+  vagrant ssh -c "cd /vagrant && ds pull stage"
+  echo -e "\033[01;32m✓ Drupal Rebuild Complete\033[01;37m"
+}
+
+# Alias for passing Drush commands to our Vagrant environment
+# Pro Tip! If you aren't using Drush locally, alias "drush"
+# to call this command with:
+# alias drush="dsdrush"
+function dsdrush() {
+  # Run this in the appropriate directory
+  dspath
+
+  echo -e "\033[01;33mOpening SSH tunnel..\033[01;37m"
+  echo -e "\033[01;33mExecuting: \033[01;35m"drush $@"\033[01;37m"
+  # @TODO - This isn't working!
+  vagrant ssh -c "cd /vagrant/html && drush $@"
 }
 
 # Do everything
@@ -107,15 +157,17 @@ function dsall() {
 
   dsup
   vagrant provision
-  dsreboot
   dsrebuild
+  dsreboot
 }
 
 # Haaalp
 function dshelp() {
-  printf "%-20s %-20s\n" `tput setaf 3`dsup `tput setaf 7`-\ Update\ production\ codebase\ from\ remote\ on\ host\ machine
-  printf "%-20s %-20s\n" `tput setaf 3`dsreboot `tput setaf 7`-\ Reboots\ the\ VM
-  printf "%-20s %-20s\n" `tput setaf 3`dsrestart `tput setaf 7`-\ Calls\ dsreboot
-  printf "%-20s %-20s\n" `tput setaf 3`dsrebuild `tput setaf 7`-\ Rebuild\ development\ environment
-  printf "%-20s %-20s\n" `tput setaf 3`dsall `tput setaf 7`-\ Update\ production\ codebase,\ rebuild\ development\ environment\ and\ restart\ the\ VM
+  printf "%-14s %-20s\n" `tput setaf 3`dsup `tput setaf 7`-\ Update\ production\ codebase\ from\ remote\ on\ host\ machine
+  printf "%-14s %-20s\n" `tput setaf 3`dsreboot `tput setaf 7`-\ Reboots\ the\ VM
+  printf "%-14s %-20s\n" `tput setaf 3`dsrestart `tput setaf 7`-\ Calls\ dsreboot
+  printf "%-14s %-20s\n" `tput setaf 3`dsrebuild `tput setaf 7`-\ Rebuild\ development\ environment
+  printf "%-14s %-20s\n" `tput setaf 3`dscleanup `tput setaf 7`-\ Cleans\ up\ local\ and\ remote\ branches\ that\ have\ been\ merged 
+  printf "%-14s %-20s\n" `tput setaf 3`dsgrunt `tput setaf 7`-\ Rebuild\ front-end\ environment
+  printf "%-14s %-20s\n" `tput setaf 3`dsall `tput setaf 7`-\ Update\ production\ codebase,\ rebuild\ development\ environment\ and\ restart\ the\ VM
 }

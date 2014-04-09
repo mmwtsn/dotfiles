@@ -15,11 +15,6 @@ if [ -f ~/.bash_helpers ]; then
   source ~/.bash_helpers
 fi
 
-# Source DS Helper Functions
-if [ -f ~/.bash_dosomething ]; then
-  source ~/.bash_dosomething
-fi
-
 # Git auto-complete
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
@@ -27,9 +22,6 @@ fi
 
 # allow for Vim-like command line movement
 set -o vi
-
-# Grunt auto-completion
-eval "$(grunt --completion=bash)"
 
 # Colors
 # Defines local variables to simplify calling colors
@@ -56,7 +48,6 @@ function PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$black$open_bracket$environment$close_bracket$open_bracket$red$current_dir$black$close_bracket$black\$(current_git_branch)$black$prompt$white"
     export PS1="$blue[$current_dir]$yellow\$(current_git_branch)$red$prompt$white"
 }
 PS1
