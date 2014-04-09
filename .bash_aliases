@@ -3,7 +3,7 @@ alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
-alias ls="ls -G"
+alias ls="ls -GF"
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias prc="vim ~/.bash_profile"
@@ -12,7 +12,10 @@ alias cc="compass compile --force -s compressed"
 alias cw="compass watch -s compressed"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
-alias shot="shotgun"
+alias c="clear" # Shortcut to scroll up the buffer when using tmux or screen
+
+# tmux aliases
+alias r="tmux source-file ~/.tmux.conf"
 
 # Default all GitHub Gists to private with a description
 alias g="gist -p -d"
@@ -29,3 +32,4 @@ alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 alias gpm="git checkout dev && git fetch --all --prune && git pull" # Git prune, merge
+

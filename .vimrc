@@ -56,8 +56,9 @@ let g:ctrlp_cmd = 'CtrlP'
 set shortmess+=I
 
 " Color scheme
-colors base16-tomorrow
-colors furnes-tomorrow
+colors tomorrow-night
+
+set t_Co=256
 set background=dark
 hi TabLineFill term=bold cterm=bold ctermbg=0
 
@@ -111,7 +112,7 @@ map <C-j> :set paste<CR>
 map <C-k> :set nopaste<CR>
 
 " Hide library, package and other misc. files from Vim/Ctrl-P
-set wildignore+=*/vendor/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/vendor/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
 
 " Pathogen settings for plug-in management
 filetype off
