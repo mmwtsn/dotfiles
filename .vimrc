@@ -52,6 +52,21 @@ let g:Powerline_colorscheme = 'maxwell'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " Disable caching in CtrlP because ag is that fast
+  let g:ctrlp_use_caching = 0
+endif
+
+" Bind K to grep (ag) word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " Do not display start screen
 set shortmess+=I
 
@@ -82,8 +97,8 @@ au BufRead,BufNewFile Gruntfile set filetype=javascript
 
 au BufRead,BufNewFile .bash_* set filetype=sh
 
-" Specify swap file directory
-set directory^=$HOME/.swp//
+" Do not create swap files
+set noswapfile
 
 " Add closing `}}` for Mustache.js templating
 inoremap {{ {{}}<left><left>
