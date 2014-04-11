@@ -70,9 +70,6 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Do not display start screen
 set shortmess+=I
 
-" Color scheme
-colors tomorrow-night
-
 set t_Co=256
 set background=dark
 hi TabLineFill term=bold cterm=bold ctermbg=0
@@ -134,6 +131,9 @@ filetype off
 call pathogen#infect('~/.vim/bundle')
 call pathogen#helptags()
 syntax on
+
+" Color scheme
+colors tomorrow-night
 
 " Highlight trailing whitespace
 hi ExtraWhitespace ctermbg=darkblue guibg=darkblue
