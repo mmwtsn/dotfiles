@@ -1,3 +1,9 @@
+#
+# @NOTE
+# This file is no longer in use!
+# Saving it as a reference.
+#
+
 # Helper function to quickly access Neue (in Paraneue)
 function neueds() {
   dspath
