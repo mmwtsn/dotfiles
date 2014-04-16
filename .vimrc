@@ -100,6 +100,9 @@ set noswapfile
 " Add closing `}`, new line and auto-indent when requested
 inoremap {<CR> {<CR>}<Esc><S-o>
 
+" Speaking of curly brackets, allow mustache.vim's helper abbreviations
+let g:mustache_abbreviations = 1
+
 " map ij to exit insertion mode
 imap jj <Esc>
 
