@@ -51,3 +51,18 @@ function PS1 {
     export PS1="$blue[$current_dir]$yellow\$(current_git_branch)$red$prompt$white"
 }
 PS1
+
+# User specific environment and startup programs
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/usr/local/bin
+export PATH
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Set $TERM explicitly to force tmux to recognize 256 colors
+export TERM=screen-256color-bce
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
