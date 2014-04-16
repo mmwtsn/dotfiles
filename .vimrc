@@ -97,11 +97,8 @@ au BufRead,BufNewFile .bash_* set filetype=sh
 " Do not create swap files
 set noswapfile
 
-" Add closing `}}` for Mustache.js templating
-inoremap {{ {{}}<left><left>
-
-" Add closing `}`, new line and auto-indent
-inoremap { {<CR>}<Esc>ko
+" Add closing `}`, new line and auto-indent when requested
+inoremap {<CR> {<CR>}<Esc><S-o>
 
 " map ij to exit insertion mode
 imap jj <Esc>
@@ -142,3 +139,6 @@ match ExtraWhitespace /\(\S\+\)\@<=\s\+$/
 " Refreshing Vimroom settings when the window is resized
 autocmd VimResized * VimroomToggle
 autocmd VimResized * VimroomToggle
+
+" Start scrolling the buffer before top or bottom is reached
+set scrolloff=5
