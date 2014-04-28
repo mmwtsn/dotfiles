@@ -8,11 +8,6 @@
 set number
 set relativenumber
 
-" Allow for intentation-based folding
-set foldmethod=indent
-set nofoldenable
-nnoremap <Space> za
-
 set ic
 set hlsearch
 set nocp
@@ -116,8 +111,8 @@ nnoremap sl <C-w>l
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 
-" Disable folding in Markdown files to allow use of "---"/YAML
-let g:vim_markdown_folding_disabled=1
+" Disable folding because it's driving me crazy
+set nofoldenable
 
 " Toggle paste mode to avoid :set paste
 map <C-j> :set paste<CR>
