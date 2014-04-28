@@ -53,16 +53,18 @@ function PS1 {
 PS1
 
 # User specific environment and startup programs
+PATH=/usr/local/bin:$PATH
 PATH=$PATH:$HOME/bin
-PATH=$PATH:/usr/local/bin
 export PATH
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Set $TERM explicitly to force tmux to recognize 256 colors
 export TERM=screen-256color-bce
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-### Added by the Heroku Toolbelt
+# Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add RVM to PATH
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
