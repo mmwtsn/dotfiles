@@ -32,9 +32,3 @@ alias gc="git commit -m '"
 alias gac="git add . && git commit -m '"
 alias gpp="git pull --rebase && git push"
 alias gpm="git checkout dev && git fetch --all --prune && git pull" # Git prune, merge
-
-# Source local version of Vim installed w/Homebrew
-if [ -f /usr/local/bin/vim ]; then
-  alias vim -p="/usr/local/bin/vim"
-  clear
-fi
