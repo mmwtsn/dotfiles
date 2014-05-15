@@ -48,7 +48,7 @@ function PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$magenta[$current_dir]$blue\$(current_git_branch)$yellow$prompt$white"
+    export PS1="$green[$current_dir]$red\$(current_git_branch)$blue$prompt$white"
 }
 PS1
 
