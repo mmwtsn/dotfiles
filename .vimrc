@@ -47,6 +47,9 @@ let g:Powerline_colorscheme = 'maxwell'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" Start in current directory
+let g:ctrlp_working_path_mode = 0
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
