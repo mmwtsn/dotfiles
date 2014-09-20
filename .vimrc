@@ -8,6 +8,8 @@
 set number
 set relativenumber
 
+syntax on
+
 set ic
 set hlsearch
 set nocp
@@ -22,6 +24,9 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set cindent
+
+" Sky high tab limit
+set tabpagemax=100
 
 " TODO - these were used by an old plug-in; still needed?
 filetype indent on
@@ -56,34 +61,35 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore=*.css -g ""'
 
   " Disable caching in CtrlP because ag is that fast
   let g:ctrlp_use_caching = 0
 endif
 
-" Bind K to grep (ag) word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 " Do not display start screen
 set shortmess+=I
 
+" Display a character for all trailing spaces/tabs
+set listchars=tab:▸\ ,trail:•
+set list
+
 set t_Co=256
-set background=dark
 hi TabLineFill term=bold cterm=bold ctermbg=0
 
 " Vertical and horizontal cursor settings
-"set cuc cul
 set cul
 
 " Set filetypes for various file formats for correct syntax highlighting
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.sass set filetype=sass
-au BufRead,BufNewFile *.erb set filetype=eruby.html
 au BufREad,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.coffee set filetype=javascript
 au BufRead,BufNewFile *.rake set filetype=ruby
 au BufRead,BufNewFile *.ru set filetype=ruby
+
+au BufRead,BufNewFile *.html.erb set filetype=eruby.html
+au BufRead,BufNewFile *.js.erb set filetype=javascript
 
 au BufRead,BufNewFile Gemfile set filetype=ruby
 au BufRead,BufNewFile Guardfile set filetype=ruby
@@ -100,6 +106,9 @@ inoremap {<CR> {<CR>}<Esc><S-o>
 
 " Speaking of curly brackets, allow mustache.vim's helper abbreviations
 let g:mustache_abbreviations = 1
+
+" Remap leader to something easier to reach
+let mapleader = ","
 
 " map ij to exit insertion mode
 imap jj <Esc>
@@ -125,21 +134,28 @@ map <C-k> :set nopaste<CR>
 set wildignore+=*/vendor/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
 
 " Pathogen settings for plug-in management
-filetype off
+"filetype off
 call pathogen#infect('~/.vim/bundle')
 call pathogen#helptags()
-syntax on
 
 " Color scheme
 colors tomorrow-night
-
-" Highlight trailing whitespace
-hi ExtraWhitespace ctermbg=darkblue guibg=darkblue
-match ExtraWhitespace /\(\S\+\)\@<=\s\+$/
 
 " Refreshing Vimroom settings when the window is resized
 autocmd VimResized * VimroomToggle
 autocmd VimResized * VimroomToggle
 
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" Custom mapping to run mocha tests
+map <Leader>m :! mocha --reporter spec<CR>
+
 " Start scrolling the buffer before top or bottom is reached
 set scrolloff=5
+
+highlight HiTODO cterm=bold term=bold ctermbg=lightblue ctermfg=black
+match HiTODO /TODO/
