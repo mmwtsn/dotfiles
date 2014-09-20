@@ -48,13 +48,14 @@ function PS1 {
     local current_dir="\W"
     local close_bracket="]"
     local prompt="⚡ "
-    export PS1="$green[$current_dir]$red\$(current_git_branch)$blue$prompt$white"
+    export PS1="$green[$current_dir]$blue\$(current_git_branch)$magenta$prompt$white"
 }
 PS1
 
 # User specific environment and startup programs
 PATH=/usr/local/bin:$PATH
 PATH=$PATH:$HOME/bin
+PATH=$PATH:/usr/sbin
 export PATH
 
 # Set $TERM explicitly to force tmux to recognize 256 colors
