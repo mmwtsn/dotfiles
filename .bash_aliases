@@ -3,7 +3,8 @@ alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
-alias ls="ls -GF"
+alias ls="ls -GF" # Always list files with trailing slashes to denote directories using colorized output when available
+alias vs="echo && ls -GF1 && echo" # "Vertical List" for better visualizing direcotry contents by forcing verical output and printing a new line before and after
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bashrc"
 alias prc="vim ~/.bash_profile"
@@ -13,6 +14,7 @@ alias cw="compass watch -s compressed"
 alias todos="grep -ri 'todo' . | wc -l"
 alias notes="grep -ri 'note' . | wc -l"
 alias c="clear" # Shortcut to scroll up the buffer when using tmux or screen
+alias t="touch" # Shortcut to create a new file because I'm impatient
 
 # tmux aliases
 alias r="tmux source-file ~/.tmux.conf"
