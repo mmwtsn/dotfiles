@@ -1,0 +1,4 @@
+$if Bash
+  set completion-ignore-case On
+  control-l 'clear\n'
+$endif
