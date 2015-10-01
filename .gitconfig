@@ -4,6 +4,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	whitespace = trailing-space,space-before-tab
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 [color]
 	ui = true
