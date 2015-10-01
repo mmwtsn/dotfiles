@@ -24,3 +24,6 @@ fi
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+# Move "hidden" dot files by default
+shopt -s dotglob
