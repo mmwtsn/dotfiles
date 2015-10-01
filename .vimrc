@@ -25,7 +25,6 @@ Plugin 'tpope/vim-fugitive'           " Wrapper around Git
 Plugin 'bling/vim-airline'            " Customized status line
 Plugin 'Raimondi/delimitMate'         " Automatically adds closing symbol
 Plugin 'tpope/vim-surround'           " Simplifies editing character pairs
-Plugin 'thoughtbot/vim-rspec'         " Lightweight RSpec runner
 Plugin 'ervandew/supertab'            " Brings together YCM, ultisnips
 Plugin 'scrooloose/syntastic'         " Syntax checker
 Plugin 'SirVer/ultisnips'             " Snippet engine
@@ -259,15 +258,6 @@ if executable('ag')
 
   let g:ctrlp_use_caching=0 " Disable Caching
 endif
-
-" =========
-" RSpec.vim
-" =========
-
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 
 " ===============
 " Theme Overrides
