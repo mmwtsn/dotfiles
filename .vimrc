@@ -16,25 +16,25 @@ call vundle#begin()                   " Begin sourcing Vundle plugins
 " ==================
 
 Plugin 'gmarik/Vundle.vim'            " Start things off with Vundle itself
+Plugin 'Valloric/YouCompleteMe'       " Powerful completion engine
+Plugin 'marijnh/tern_for_vim'         " JavaScript code analysis engine
 Plugin 'airblade/vim-gitgutter'       " Displays git status in sidebar
-Plugin 'ctrlp/ctrlp.vim'              " Fast filepath fuzzy find
+Plugin 'ctrlpvim/ctrlp.vim'           " Fast filepath fuzzy find
 Plugin 'rking/ag.vim'                 " Wrapper around the Silver Searcher
 Plugin 'tpope/vim-fugitive'           " Wrapper around Git
 Plugin 'bling/vim-airline'            " Customized status line
 Plugin 'Raimondi/delimitMate'         " Automatically adds closing symbol
 Plugin 'tpope/vim-surround'           " Simplifies editing character pairs
 Plugin 'thoughtbot/vim-rspec'         " Lightweight RSpec runner
-Plugin 'Yggdroot/indentLine'          " Display indentation guides
 Plugin 'ervandew/supertab'            " Brings together YCM, ultisnips
 Plugin 'scrooloose/syntastic'         " Syntax checker
-Plugin 'Valloric/YouCompleteMe'       " Powerful completion engine
 Plugin 'SirVer/ultisnips'             " Snippet engine
 Plugin 'mmwtsn/vim-snippets'          " Standard JS-compliant Snippet packages
-Plugin 'marijnh/tern_for_vim'         " JavaScript code analysis engine
-Plugin 'jelera/vim-javascript-syntax' " Enhanced JavaScript support
+Plugin 'wlangstroth/vim-racket'
+Plugin 'raichoo/haskell-vim'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jiangmiao/simple-javascript-indenter'
-Plugin 'raichoo/haskell-vim'          " Enhanced Haskell support
-Plugin 'slim-template/vim-slim'       " Enhanced Slim support
+Plugin 'digitaltoad/vim-jade'
 
 " =================
 " Vundle Set-up End
