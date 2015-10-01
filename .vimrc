@@ -219,6 +219,9 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 " Pass calls to `K` through to the Silver Searcher
 nnoremap K :Ag<CR>
 
+" Auto-close and indent after opening {
+inoremap {<CR> {<CR>}<Esc><S-o>
+
 " =====
 " CtrlP
 " =====
@@ -286,23 +289,6 @@ hi ColorColumn  ctermfg=01 ctermbg=10
 " Extend ColorColumn highlight well beyond 80 columns
 let &colorcolumn=join(range(81,999),",")
 
-" =================
-" Filetype Settings
-" =================
-
-" au BufRead,BufNewFile *.scss set filetype=scss
-" au BufRead,BufNewFile *.sass set filetype=sass
-" au BufRead,BufNewFile *.rake set filetype=ruby
-" au BufRead,BufNewFile *.ru set filetype=ruby
-" au BufRead,BufNewFile *.html.erb set filetype=eruby.html
-" au BufRead,BufNewFile *.js.erb set filetype=javascript
-" au BufRead,BufNewFile Gemfile set filetype=ruby
-" au BufRead,BufNewFile Guardfile set filetype=ruby
-" au BufRead,BufNewFile Rakefile set filetype=ruby
-" au BufRead,BufNewFile Gruntfile set filetype=javascript
-" au BufRead,BufNewFile *.rs set filetype=go
-" au BufRead,BufNewFile .bash_* set filetype=sh
-
 " ====================
 " Indentation Settings
 " ====================
@@ -317,14 +303,3 @@ autocmd BufEnter *.rs set expandtab shiftwidth=4 softtabstop=4
 " list of inline `--ignore` values can be specified in the `ag ...` command
 " above or a .agignore file can be added to your project.
 set wildignore+=*/node_modules/*,*/tmp/*,*/public/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
-
-" =====================
-" TODO
-" Misc. Legacy Settings
-" =====================
-
-" hi TabLineFill term=bold cterm=bold ctermbg=0
-" inoremap {<CR> {<CR>}<Esc><S-o> " Auto-close and indent after opening {
-" CloseTag configuration for HTML and ERB filetypes
-"autocmd FileType html,erb let b:closetag_html_style=1
-"autocmd FileType html,erb source ~/.vim/bundle/closetag/plugin/closetag.vim
