@@ -1,4 +1,7 @@
 $if Bash
-  set completion-ignore-case On
-  control-l 'clear\n'
+  # Ignore case with command line tab completion
+  set completion-ignore-case on
+
+  # Ensure `CONTROL-L` clears the terminal as it does in Linux
+  C-L: clear-screen
 $endif
