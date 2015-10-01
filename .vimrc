@@ -130,6 +130,9 @@ set listchars=
 set laststatus=2   " Always show the status bar at the botom
 set showtabline=2  " Always show the tab bar at the top
 
+" Prevent Vim from auto-hiding concealable characters (e.g. quotes in JSON)
+set conceallevel=0
+
 " Ensure annoying preview window is not triggered
 set completeopt-=preview
 
