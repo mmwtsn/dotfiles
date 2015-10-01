@@ -9,3 +9,7 @@
 	ui = true
 [gitsh]
 	prompt = "%D %c%b%#%w"
+[alias]
+	l = log --oneline
+	b = branch
+	c = checkout
