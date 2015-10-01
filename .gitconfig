@@ -7,3 +7,5 @@
 	editor = /usr/local/bin/vim
 [color]
 	ui = true
+[gitsh]
+	prompt = "%D %c%b%#%w"
