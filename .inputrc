@@ -2,6 +2,9 @@ $if Bash
   # Ignore case with command line tab completion
   set completion-ignore-case on
 
+  # Allow for Vim-like command line movement
+  set -o vi
+
   # Ensure `CONTROL-L` clears the terminal as it does in Linux
   C-L: clear-screen
 $endif
