@@ -270,7 +270,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 " Theme Overrides
 " ===============
 
-hi Search       ctermfg=00 ctermbg=01
+hi Search       ctermfg=00 ctermbg=03
 hi LineNr       ctermfg=12 ctermbg=00
 hi CursorLineNr ctermfg=03 ctermbg=00
 hi SpellBad     ctermfg=01 ctermbg=00
