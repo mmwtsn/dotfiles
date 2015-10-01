@@ -1,0 +1,33 @@
+# Colors
+# Defines local variables to simplify calling colors
+black="\[\033[01;30m\]"
+red="\[\033[01;31m\]"
+green="\[\033[01;32m\]"
+yellow="\[\033[01;33m\]"
+blue="\[\033[01;34m\]"
+magenta="\[\033[01;35m\]"
+cyan="\[\033[01;36m\]"
+white="\[\033[01;37m\]"
+
+# Custom Prompt
+# Function idea credit: shaman.sir via http://stackoverflow.com/a/6086978
+function PS1() {
+  if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+    local status="$(tmux display-message -p '#S')"
+  else
+    local status="!tmux"
+  fi
+
+  local open_delimiter="["
+  local close_delimiter="]"
+  local at="@"
+  local host="macbook"
+  local divider=":"
+  local current_directory="\W"
+  local git_prompt="\$(__git_ps1)"
+  local space=" "
+  local prompt="\$"
+
+  export PS1="$white$open_delimiter$blue$status$white$divider$green$current_directory$white$close_delimiter$yellow$git_prompt$space$white$prompt$space"
+}
+PS1
