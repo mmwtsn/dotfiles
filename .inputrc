@@ -1,4 +1,7 @@
 $if Bash
+  # Ensure symlinked directories autocomplete through the trailing slash
+  set mark-symlinked-directories on
+
   # Ignore case with command line tab completion
   set completion-ignore-case on
 
