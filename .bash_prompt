@@ -1,33 +1,35 @@
-# Colors
-# Defines local variables to simplify calling colors
-black="\[\033[01;30m\]"
-red="\[\033[01;31m\]"
-green="\[\033[01;32m\]"
-yellow="\[\033[01;33m\]"
-blue="\[\033[01;34m\]"
-magenta="\[\033[01;35m\]"
-cyan="\[\033[01;36m\]"
-white="\[\033[01;37m\]"
-
-# Custom Prompt
-# Function idea credit: shaman.sir via http://stackoverflow.com/a/6086978
+# Configure a simple prompt
 function PS1() {
-  if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
-    local status="$(tmux display-message -p '#S')"
-  else
-    local status="!tmux"
+  # Define color variables so PS1 export is readable
+  local black="\[\033[01;30m\]"
+  local red="\[\033[01;31m\]"
+  local green="\[\033[01;32m\]"
+  local yellow="\[\033[01;33m\]"
+  local blue="\[\033[01;34m\]"
+  local magenta="\[\033[01;35m\]"
+  local cyan="\[\033[01;36m\]"
+  local white="\[\033[01;37m\]"
+
+  # Check if we are in a Git initialized directory or the subdirectory of one
+  git rev-parse --git-dir &> /dev/null
+
+  # Set the color of the Git branch based on the current project status
+  if [[ ! $? == 128 ]]; then
+    if [[ $(git status) =~ "Untracked files" ]]; then
+      # There are new files not known to Git
+      local git_prompt_color=$red
+    elif [[ $(git status) =~ "Changes not staged for commit" ]]; then
+      # There are changes that have not yet been staged
+      local git_prompt_color=$yellow
+    else
+      # The working directory is clean. Everything staged or committed
+      local git_prompt_color=$green
+    fi
   fi
 
-  local open_delimiter="["
-  local close_delimiter="]"
-  local at="@"
-  local host="macbook"
-  local divider=":"
-  local current_directory="\W"
-  local git_prompt="\$(__git_ps1)"
-  local space=" "
-  local prompt="\$"
-
-  export PS1="$white$open_delimiter$blue$status$white$divider$green$current_directory$white$close_delimiter$yellow$git_prompt$space$white$prompt$space"
+  # Construct a simple prompt with the working directory and Git branch name
+  PS1=$white"["$blue"\W"$white"]"$git_prompt_color$(__git_ps1)$white" "\$" "
 }
-PS1
+
+# Ensure Git prompt function is executed every time a command is executed
+PROMPT_COMMAND=PS1
