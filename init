@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Setup Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew tap thoughtbot/formulae
+
+brew install \
+  ag \
+  awscli \
+  gitsh \
+  go \
+  httpie \
+  jq \
+  mysql \
+  node \
+  postgresql \
+  python \
+  rcm \
+  ruby \
+  tmux \
+  tree \
+  wget
+
+# Setup dotfiles
+rcup -v -d src
+
+# Source dotfiles
+. ~/.bashrc
