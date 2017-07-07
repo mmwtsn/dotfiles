@@ -11,6 +11,3 @@ for file in "${files[@]}"; do
     source $file
   fi
 done
-
-# Move "hidden" dot files by default
-shopt -s dotglob
