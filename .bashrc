@@ -1,13 +1,71 @@
-files=(
-  /etc/bashrc
-  ~/.bash_aliases
-  ~/.bash_helpers
-  ~/.bash_prompt
-  ~/.git-completion.bash
-)
+# Colorize output and differentiate between files, directories, symlinks, etc.
+alias ls="ls -GF"
 
-for file in "${files[@]}"; do
-  if [ -f $file ]; then
-    source $file
+# List directories first, colorize output, ignore node_modules
+alias tree="tree -I node_modules --dirsfirst -C"
+
+# Prefer Vim binary from MacVim for better UtilSnips compatability
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
+
+# Set up tmux splits
+function setup() {
+  # split window horizontally
+  tmux split-window -h
+
+  # select the new pane
+  tmux select-pane -t 1
+
+  # split new pane vertically
+  tmux split-window -v
+
+  # select the new pane
+  tmux select-pane -t 2
+
+  # open gitsh
+  tmux send-keys 'gitsh' C-m
+
+  # clear gitsh
+  tmux send-keys '!clear' C-m
+
+  # go back to the first pane
+  tmux select-pane -t 0
+
+  # open vim
+  tmux send-keys 'vim' C-m
+}
+
+# Set up prompt
+function PS1() {
+  # Define color variables so PS1 export is readable
+  local black="\[\033[01;30m\]"
+  local red="\[\033[01;31m\]"
+  local green="\[\033[01;32m\]"
+  local yellow="\[\033[01;33m\]"
+  local blue="\[\033[01;34m\]"
+  local magenta="\[\033[01;35m\]"
+  local cyan="\[\033[01;36m\]"
+  local white="\[\033[01;37m\]"
+
+  # Check if we are in a Git initialized directory or the subdirectory of one
+  git rev-parse --git-dir &> /dev/null
+
+  # Set the color of the Git branch based on the current project status
+  if [[ ! $? == 128 ]]; then
+    if [[ $(git status) =~ "Untracked files" ]]; then
+      # There are new files not known to Git
+      local git_prompt_color=$red
+    elif [[ $(git status) =~ "Changes not staged for commit" ]]; then
+      # There are changes that have not yet been staged
+      local git_prompt_color=$yellow
+    else
+      # The working directory is clean. Everything staged or committed
+      local git_prompt_color=$green
+    fi
   fi
-done
+
+  # Construct a simple prompt with the working directory and Git branch name
+  PS1=$white"["$blue"\W"$white"]"$git_prompt_color$(__git_ps1)$white" "\$" "
+}
+
+# Ensure Git prompt function is executed every time a command is executed
+PROMPT_COMMAND=PS1
