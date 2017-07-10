@@ -38,3 +38,11 @@ npm install --prefix ~/.vim/bundle/tern_for_vim
 # Setup YouCompleteMe
 git -C ~/.vim/bundle/YouCompleteMe submodule update --init --recursive
 ~/.vim/bundle/YouCompleteMe/install.py --gocode-completer --tern-completer
+
+# Setup patched fonts for Powerline
+git clone https://github.com/powerline/fonts.git
+cd fonts
+mv SourceCodePro Source\ Code\ Pro
+./install.sh 'Source Code Pro'
+cd ..
+rm -rf fonts
