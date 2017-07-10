@@ -14,6 +14,14 @@ Run the init script:
 $ ./bin/init
 ```
 
+Add new dotfiles *without* a period prefix to `src/`. Files outside that directory are not linked.
+
+After adding a new dotfile or editing an existing one re-run rcup to link them:
+
+```bash
+$ ./bin/link
+```
+
 ## Further setup
 
 Git is useful here to track changes but it does not sync automatically by default. I have this cloned into a Dropbox directory that is available on all my computers.

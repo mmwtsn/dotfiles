@@ -24,7 +24,7 @@ brew install \
   wget
 
 # Setup dotfiles
-rcup -v -d src
+./link
 
 # Source dotfiles
 . $HOME/.bashrc
