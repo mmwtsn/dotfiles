@@ -8,6 +8,7 @@ brew tap thoughtbot/formulae
 brew install \
   ag \
   awscli \
+  cmake \
   gitsh \
   go \
   httpie \
@@ -27,3 +28,13 @@ rcup -v -d src
 
 # Source dotfiles
 . ~/.bashrc
+
+# Setup Vim
+vim +PluginInstall +qall
+
+# Setup Tern server
+npm install --prefix ~/.vim/bundle/tern_for_vim
+
+# Setup YouCompleteMe
+git -C ~/.vim/bundle/YouCompleteMe submodule update --init --recursive
+~/.vim/bundle/YouCompleteMe/install.py --gocode-completer --tern-completer
