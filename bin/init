@@ -27,17 +27,17 @@ brew install \
 rcup -v -d src
 
 # Source dotfiles
-. ~/.bashrc
+. $HOME/.bashrc
 
 # Setup Vim
 vim +PluginInstall +qall
 
 # Setup Tern server
-npm install --prefix ~/.vim/bundle/tern_for_vim
+npm install --prefix $HOME/.vim/bundle/tern_for_vim
 
 # Setup YouCompleteMe
-git -C ~/.vim/bundle/YouCompleteMe submodule update --init --recursive
-~/.vim/bundle/YouCompleteMe/install.py --gocode-completer --tern-completer
+git -C $HOME/.vim/bundle/YouCompleteMe submodule update --init --recursive
+$HOME/.vim/bundle/YouCompleteMe/install.py --gocode-completer --tern-completer
 
 # Setup patched fonts for Powerline
 git clone https://github.com/powerline/fonts.git
