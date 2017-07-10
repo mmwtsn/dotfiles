@@ -1,6 +1,7 @@
 [user]
 	name = M. Maxwell Watson
 	email = hi@mmwtsn.com
+	signingkey = 79D20DB54F91B8D1
 [core]
 	excludesfile = ~/.gitignore_global
 	whitespace = trailing-space,space-before-tab
@@ -13,3 +14,5 @@
 	l = log --oneline
 	b = branch
 	c = checkout
+[commit]
+	gpgsign = true
