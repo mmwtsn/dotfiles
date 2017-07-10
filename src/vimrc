@@ -23,6 +23,7 @@ Plugin 'ctrlpvim/ctrlp.vim'           " Fast filepath fuzzy find
 Plugin 'rking/ag.vim'                 " Wrapper around the Silver Searcher
 Plugin 'tpope/vim-fugitive'           " Wrapper around Git
 Plugin 'bling/vim-airline'            " Customized status line
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Raimondi/delimitMate'         " Automatically adds closing symbol
 Plugin 'tpope/vim-surround'           " Simplifies editing character pairs
 Plugin 'ervandew/supertab'            " Brings together YCM, ultisnips
