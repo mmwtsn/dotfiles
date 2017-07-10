@@ -1,10 +1,19 @@
-# dot-rc
+# dotfiles
 
-Included are some of the configuration files I use frequently.
+## Summary
 
-These files are stored in a Dropbox folder that I install on my development
-machines. Local versions of these files replaced with symlinks pointing here.
+These are all the configuration files I use when setting up new Apple computers.
 
-## License
+I use [Homebrew](https://brew.sh/) as my package manager and Bash as my shell.
 
-MIT
+## Quick start
+
+Run the init script:
+
+```bash
+$ ./bin/init
+```
+
+## Further setup
+
+Git is useful here to track changes but it does not sync automatically by default. I have this cloned into a Dropbox directory that is available on all my computers.
