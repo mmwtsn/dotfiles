@@ -1,13 +1,10 @@
-$if Bash
-  # Ensure symlinked directories autocomplete through the trailing slash
-  set mark-symlinked-directories on
+set mark-symlinked-directories on
+set completion-ignore-case on
+set editing-mode vi
 
-  # Ignore case with command line tab completion
-  set completion-ignore-case on
-
-  # Allow for Vim-like command line movement
-  set -o vi
-
-  # Ensure `CONTROL-L` clears the terminal as it does in Linux
-  C-L: clear-screen
+$if mode=vi
+  set keymap vi-command
+  Control-l: clear-screen
+  set keymap vi-insert
+  Control-l: clear-screen
 $endif
