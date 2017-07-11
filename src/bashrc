@@ -7,31 +7,22 @@ alias tree="tree -I node_modules --dirsfirst -C"
 # Prefer Vim binary from MacVim for better UtilSnips compatability
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
 
-# Set up tmux splits
-function setup() {
-  # split window horizontally
+# Setup tmux splits like this:
+# ----------------------------
+# -    bash    -             -
+# --------------     vim     -
+# -    gitsh   -             -
+# ----------------------------
+function init() {
   tmux split-window -h
-
-  # select the new pane
-  tmux select-pane -t 1
-
-  # split new pane vertically
-  tmux split-window -v
-
-  # select the new pane
-  tmux select-pane -t 2
-
-  # open gitsh
-  tmux send-keys 'gitsh' C-m
-
-  # clear gitsh
-  tmux send-keys '!clear' C-m
-
-  # go back to the first pane
   tmux select-pane -t 0
-
-  # open vim
+  tmux send-keys 'clear' C-m
+  tmux split-window -v
+  tmux send-keys 'gitsh' C-m
+  tmux send-keys '!clear' C-m
+  tmux select-pane -t 2
   tmux send-keys 'vim' C-m
+  tmux select-pane -t 0
 }
 
 # Set up prompt
