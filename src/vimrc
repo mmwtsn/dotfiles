@@ -284,9 +284,6 @@ hi StatusLine   ctermfg=07 ctermbg=10
 hi StatusLineNC ctermfg=07 ctermbg=00
 hi ColorColumn  ctermfg=01 ctermbg=10
 
-" Extend ColorColumn highlight well beyond 80 columns
-let &colorcolumn=join(range(81,999),",")
-
 " ====================
 " Indentation Settings
 " ====================
