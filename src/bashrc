@@ -10,24 +10,6 @@ alias ag="ag --ignore-dir=vendor"
 # Prefer Vim binary from MacVim for better UtilSnips compatability
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
 
-# Setup tmux splits like this:
-# ----------------------------
-# -    bash    -             -
-# --------------     vim     -
-# -    gitsh   -             -
-# ----------------------------
-function init() {
-  tmux split-window -h
-  tmux select-pane -t 0
-  tmux send-keys 'clear' C-m
-  tmux split-window -v
-  tmux send-keys 'gitsh' C-m
-  tmux send-keys '!clear' C-m
-  tmux select-pane -t 2
-  tmux send-keys 'vim' C-m
-  tmux select-pane -t 0
-}
-
 # Set up prompt
 function PS1() {
   # Define color variables so PS1 export is readable
