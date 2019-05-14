@@ -113,7 +113,6 @@ set scrolloff=5       " Minimum number of lines kept above and below the cursor
 set nowrap            " Disable line wrapping
 set colorcolumn=80    " Draw line at this character limit
 set encoding=utf-8    " Enable UTF-8 character encoding
-set list              " Show whitespace characters
 set laststatus=2      " Always show the status bar at the botom
 set showtabline=2     " Always show the tab bar at the top
 
@@ -138,8 +137,9 @@ set regexpengine=1    " Use old regex engine
 
 colorscheme base16-tomorrow
 set background=dark
-highlight HiTODO cterm=bold term=bold ctermbg=lightblue ctermfg=black
-match HiTODO /TODO/
+
+highlight TrailingWhitespace ctermbg=darkred guibg=darkred
+match TrailingWhitespace /\s\+$/
 
 " ====
 " Text
