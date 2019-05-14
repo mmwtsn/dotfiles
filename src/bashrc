@@ -40,7 +40,7 @@ function PS1() {
   fi
 
   # Construct a simple prompt with the working directory and Git branch name
-  PS1=$white"["$blue"\W"$white"]"$git_prompt_color$(__git_ps1)$white" "\$" "
+  PS1="$white[$blue\W$white]$git_prompt_color$(__git_ps1)$white $ "
 }
 
 # Ensure Git prompt function is executed every time a command is executed
