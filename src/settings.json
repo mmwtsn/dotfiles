@@ -1,0 +1,43 @@
+{
+    "breadcrumbs.enabled": true,
+    "editor.fontWeight": "bold",
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [80],
+    "editor.tokenColorCustomizations": {
+      "[One Monokai]": {
+          "comments": "#788192"
+      }
+    },
+    "editor.trimAutoWhitespace": true,
+    "extensions.ignoreRecommendations": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "git.enableCommitSigning": true,
+    "go.enableCodeLens": {
+      "references": false,
+      "runtest": false
+    },
+    "python.pythonPath": "${workspaceFolder}/.venv/bin/python3.7",
+    "python.venvPath": "${workspaceFolder}/.venv",
+    "python.linting.pylintArgs": [
+      "--reports=no",
+      "--rcfile=/Users/maxwell/.pylintrc"
+    ],
+    "search.useIgnoreFiles": false,
+    "search.followSymlinks": false,
+    "search.exclude": {
+      "**/bower_components": true,
+      "**/capsule8-console": true,
+      "**/node_modules": true,
+      "**/vendor": true
+    },
+    "terminal.integrated.fontWeight": "500",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "One Monokai",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.startupEditor": "none"
+}
