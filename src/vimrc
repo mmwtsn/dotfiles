@@ -17,7 +17,6 @@ call vundle#begin()                   " Begin sourcing Vundle plugins
 
 Plugin 'gmarik/Vundle.vim'            " Start things off with Vundle itself
 Plugin 'Valloric/YouCompleteMe'       " Powerful completion engine
-Plugin 'marijnh/tern_for_vim'         " JavaScript code analysis engine
 Plugin 'airblade/vim-gitgutter'       " Displays git status in sidebar
 Plugin 'ctrlpvim/ctrlp.vim'           " Fast filepath fuzzy find
 Plugin 'rking/ag.vim'                 " Wrapper around the Silver Searcher
@@ -28,13 +27,6 @@ Plugin 'Raimondi/delimitMate'         " Automatically adds closing symbol
 Plugin 'tpope/vim-surround'           " Simplifies editing character pairs
 Plugin 'ervandew/supertab'            " Brings together YCM, ultisnips
 Plugin 'scrooloose/syntastic'         " Syntax checker
-Plugin 'SirVer/ultisnips'             " Snippet engine
-Plugin 'mmwtsn/vim-snippets'          " Standard JS-compliant Snippet packages
-Plugin 'wlangstroth/vim-racket'
-Plugin 'raichoo/haskell-vim'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'jiangmiao/simple-javascript-indenter'
-Plugin 'digitaltoad/vim-jade'
 
 " =================
 " Vundle Set-up End
@@ -87,9 +79,6 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='✗'
 let g:syntastic_style_error_symbol='✗'
 let g:syntastic_style_warning_symbol='✗'
-
-" Specify language-specific linters in order of prescedence
-let g:syntastic_javascript_checkers=['standard']
 
 " =========================
 " YouCompleteMe & UtilSnips
