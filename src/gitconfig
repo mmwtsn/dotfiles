@@ -4,7 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	whitespace = trailing-space,space-before-tab
-	editor = /Applications/MacVim.app/Contents/MacOS/Vim
+	editor = code --wait
 [color]
 	ui = true
 [gitsh]
