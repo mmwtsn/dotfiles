@@ -15,18 +15,18 @@ call vundle#begin()                   " Begin sourcing Vundle plugins
 " Vundle Plugin Load
 " ==================
 
-Plugin 'gmarik/Vundle.vim'            " Start things off with Vundle itself
-Plugin 'Valloric/YouCompleteMe'       " Powerful completion engine
-Plugin 'airblade/vim-gitgutter'       " Displays git status in sidebar
-Plugin 'ctrlpvim/ctrlp.vim'           " Fast filepath fuzzy find
-Plugin 'rking/ag.vim'                 " Wrapper around the Silver Searcher
-Plugin 'tpope/vim-fugitive'           " Wrapper around Git
-Plugin 'bling/vim-airline'            " Customized status line
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Raimondi/delimitMate'         " Automatically adds closing symbol
-Plugin 'tpope/vim-surround'           " Simplifies editing character pairs
-Plugin 'ervandew/supertab'            " Brings together YCM, ultisnips
-Plugin 'scrooloose/syntastic'         " Syntax checker
+Plugin 'gmarik/Vundle.vim'              " Start things off with Vundle itself
+Plugin 'Valloric/YouCompleteMe'         " Powerful completion engine
+Plugin 'airblade/vim-gitgutter'         " Displays git status in sidebar
+Plugin 'ctrlpvim/ctrlp.vim'             " Fast filepath fuzzy find
+Plugin 'rking/ag.vim'                   " Wrapper around the Silver Searcher
+Plugin 'tpope/vim-fugitive'             " Wrapper around Git
+Plugin 'bling/vim-airline'              " Customized status line
+Plugin 'vim-airline/vim-airline-themes' " Customized status line themes
+Plugin 'Raimondi/delimitMate'           " Automatically adds closing symbol
+Plugin 'tpope/vim-surround'             " Simplifies editing character pairs
+Plugin 'ervandew/supertab'              " Brings together YCM, ultisnips
+Plugin 'scrooloose/syntastic'           " Syntax checker
 
 " =================
 " Vundle Set-up End
