@@ -27,6 +27,7 @@ Plugin 'Raimondi/delimitMate'           " Automatically adds closing symbol
 Plugin 'tpope/vim-surround'             " Simplifies editing character pairs
 Plugin 'ervandew/supertab'              " Brings together YCM, ultisnips
 Plugin 'scrooloose/syntastic'           " Syntax checker
+Plugin 'fatih/vim-go'                   " Go support
 
 " =================
 " Vundle Set-up End
@@ -250,10 +251,21 @@ if executable('ag')
   set grepprg=ag\ --nogroup " Use :ag instead of :grep
 
   " Use ag in CtrlP for listing files
-  let g:ctrlp_user_command='ag %s -l --nocolor --ignore=tmp/* --ignore=node_modules/* --ignore=*.css --ignore=*.jpg --ignore=*.jpeg --ignore=*.png --ignore=*.gif --ignore=*.svg --ignore=*.woff --ignore=*.ttf --ignore=*.eot -g ""'
+  let g:ctrlp_user_command='ag %s -l --hidden --nocolor --ignore=vendor/* --ignore=capsule8-console/* --ignore=.git/* --ignore=tmp/* --ignore=node_modules/* --ignore=*.jpg --ignore=*.jpeg --ignore=*.png --ignore=*.gif --ignore=*.svg --ignore=*.woff --ignore=*.ttf --ignore=*.eot -g ""'
 
   let g:ctrlp_use_caching=0 " Disable Caching
 endif
+
+" ==
+" Go
+" ==
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
 
 " ===============
 " Theme Overrides
@@ -279,6 +291,7 @@ let &colorcolumn=join(range(81,999),",")
 " Indentation Settings
 " ====================
 
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 autocmd BufEnter *.rs set expandtab shiftwidth=4 softtabstop=4
 
@@ -288,4 +301,4 @@ autocmd BufEnter *.rs set expandtab shiftwidth=4 softtabstop=4
 " Because of this, the wildignore value is not referenced. Either a massive
 " list of inline `--ignore` values can be specified in the `ag ...` command
 " above or a .agignore file can be added to your project.
-set wildignore+=*/node_modules/*,*/tmp/*,*/public/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
+set wildignore+=*/node_modules/*,*/tmp/*,/vendor/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
