@@ -1,5 +1,5 @@
 [user]
-	name = M. Maxwell Watson
+	name = Maxwell Watson
 	email = hi@mmwtsn.com
 [core]
 	excludesfile = ~/.gitignore_global
