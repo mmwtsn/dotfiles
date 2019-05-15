@@ -1,6 +1,6 @@
 [user]
 	name = Maxwell Watson
-	email = hi@mmwtsn.com
+	email = mmwtsn@users.noreply.github.com
 [core]
 	excludesfile = ~/.gitignore_global
 	whitespace = trailing-space,space-before-tab
