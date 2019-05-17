@@ -9,19 +9,14 @@ brew install \
   ag \
   awscli \
   cmake \
+  git \
   gitsh \
   go \
-  httpie \
   jq \
-  mysql \
-  node \
-  postgresql \
-  python \
+  openssl \
   rcm \
-  ruby \
   tmux \
   tree \
-  wget
 
 # Setup dotfiles
 ./link
