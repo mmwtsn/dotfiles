@@ -27,12 +27,8 @@ brew install \
 # Setup Vim
 vim +PluginInstall +qall
 
-# Setup Tern server
-npm install --prefix $HOME/.vim/bundle/tern_for_vim
-
-# Setup YouCompleteMe
 git -C $HOME/.vim/bundle/YouCompleteMe submodule update --init --recursive
-$HOME/.vim/bundle/YouCompleteMe/install.py --gocode-completer --tern-completer
+$HOME/.vim/bundle/YouCompleteMe/install.py --gocode-completer
 
 # Setup patched fonts for Powerline
 git clone https://github.com/powerline/fonts.git
