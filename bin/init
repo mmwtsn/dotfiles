@@ -19,7 +19,7 @@ brew install \
   tree \
 
 # Setup dotfiles
-./link
+./bin/link
 
 # Source dotfiles
 . $HOME/.bashrc
