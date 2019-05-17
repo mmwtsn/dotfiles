@@ -24,6 +24,9 @@ brew install \
 # Source dotfiles
 . $HOME/.bashrc
 
+# Set up Terminal.app
+open ./mmwtsn.terminal
+
 # Setup Vim
 vim +PluginInstall +qall
 
