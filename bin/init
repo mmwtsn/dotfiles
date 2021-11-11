@@ -30,14 +30,12 @@ brew install \
   tmux \
   tree \
 
-# Setup dotfiles
+# Link and source dotfiles
 ./bin/link
+source ~/.bashrc
 
-# Source dotfiles
-. $HOME/.bashrc
-
-# Set up Terminal.app
+# Install Terminal.app profile
 open ./mmwtsn.terminal
 
-# Setup Vim
+# Install Vim plugins
 vim +PluginInstall +qall
