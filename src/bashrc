@@ -11,8 +11,8 @@ alias ag="ag --ignore-dir=vendor"
 alias vim="vim -p"
 
 # Enable Git prompt if available otherwise define a no-op
-if [ -f $HOME/.git-prompt.sh ]; then
-  source $HOME/.git-prompt.sh
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
 else
   function __git_ps1() {
     return
