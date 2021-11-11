@@ -7,8 +7,8 @@ alias tree="tree -I node_modules --dirsfirst -C"
 # Ignore Go vendor directories
 alias ag="ag --ignore-dir=vendor"
 
-# Prefer Vim binary from MacVim for better UtilSnips compatability
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
+# Open multiple files in separate tabs
+alias vim="vim -p"
 
 # Enable Git prompt if available otherwise define a no-op
 if [ -f $HOME/.git-prompt.sh ]; then

@@ -42,9 +42,6 @@ open ./mmwtsn.terminal
 # Setup Vim
 vim +PluginInstall +qall
 
-git -C $HOME/.vim/bundle/YouCompleteMe submodule update --init --recursive
-$HOME/.vim/bundle/YouCompleteMe/install.py --gocode-completer
-
 # Setup patched fonts for Powerline
 git clone https://github.com/powerline/fonts.git
 cd fonts
