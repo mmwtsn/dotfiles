@@ -13,5 +13,7 @@
 	l = log --oneline
 	b = branch
 	c = checkout
+[push]
+	default = current
 [init]
 	defaultBranch = main
