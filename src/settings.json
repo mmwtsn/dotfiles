@@ -1,43 +1,66 @@
 {
     "breadcrumbs.enabled": true,
-    "editor.fontWeight": "bold",
     "editor.lineNumbers": "relative",
     "editor.minimap.enabled": false,
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
-    "editor.rulers": [80],
     "editor.tokenColorCustomizations": {
-      "[One Monokai]": {
-          "comments": "#788192"
-      }
+        "[One Monokai]": {
+            "comments": "#788192"
+        }
     },
     "editor.trimAutoWhitespace": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
     "extensions.ignoreRecommendations": true,
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-    "git.enableCommitSigning": true,
-    "go.enableCodeLens": {
-      "references": false,
-      "runtest": false
+    "files.exclude": {
+        "**/.git": false
     },
-    "python.pythonPath": "${workspaceFolder}/.venv/bin/python3.7",
-    "python.venvPath": "${workspaceFolder}/.venv",
-    "python.linting.pylintArgs": [
-      "--reports=no",
-      "--rcfile=/Users/maxwell/.pylintrc"
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/testdata/**": true,
+        "**/vendor/**": true,
+        "**/.venv/**": true,
+        "**/venv/**": true
+    },
+    "editor.rulers": [
+        80,
+        140
     ],
-    "search.useIgnoreFiles": false,
+    "editor.wordWrap": "off",
+    "editor.wordWrapColumn": 140,
+    "git.enableCommitSigning": true,
+    "gitblame.statusBarMessageFormat": "Blame: ${author.name} ( ${time.ago} )",
+    "go.buildOnSave": "off",
+    "go.formatFlags": [
+        "-local"
+    ],
+    "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
+    "gopls": {
+        "build.experimentalWorkspaceModule": true
+    },
+    "liveshare.allowGuestDebugControl": false,
+    "liveshare.presence": true,
+    "rewrap.autoWrap.notification": "text",
+    "rewrap.wrappingColumn": 80,
     "search.followSymlinks": false,
     "search.exclude": {
-      "**/bower_components": true,
-      "**/capsule8-console": true,
-      "**/node_modules": true,
-      "**/vendor": true
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true
     },
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.defaultProfile.osx": "bash",
     "terminal.integrated.fontWeight": "500",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 2,
     "workbench.colorTheme": "One Monokai",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.focusRecentEditorAfterClose": false,
+    "workbench.editor.untitled.hint": "hidden",
     "workbench.startupEditor": "none"
 }
