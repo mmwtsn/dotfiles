@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
+# Change the default macOS shell to bash
+chsh -s /bin/bash
+
 # Manually create a .bash_profile so it is not synced
 cat << EOF >> ~/.bash_profile
 # Source primary bash configuration from synced ~/.bashrc file
 if [ -f "~/.bashrc" ]; then source ~/.bashrc; fi
+
+# macOS setup
+export BASH_SILENCE_DEPRECATION_WARNING=1
 EOF
 
 # Setup Homebrew
