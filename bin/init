@@ -12,7 +12,7 @@ if [ -f "~/.bashrc" ]; then source ~/.bashrc; fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
 EOF
 
-# Setup Homebrew
+# Install and setup Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew tap thoughtbot/formulae
@@ -20,12 +20,12 @@ brew tap thoughtbot/formulae
 brew install \
   ag \
   awscli \
-  cmake \
+  gnupg \
+  make \
   git \
   gitsh \
   go \
   jq \
-  openssl \
   rcm \
   tmux \
   tree \
