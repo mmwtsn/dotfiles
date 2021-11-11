@@ -41,11 +41,3 @@ open ./mmwtsn.terminal
 
 # Setup Vim
 vim +PluginInstall +qall
-
-# Setup patched fonts for Powerline
-git clone https://github.com/powerline/fonts.git
-cd fonts
-mv SourceCodePro Source\ Code\ Pro
-./install.sh 'Source Code Pro'
-cd ..
-rm -rf fonts
