@@ -36,6 +36,3 @@ source ~/.bashrc
 
 # Install Terminal.app profile
 open ./mmwtsn.terminal
-
-# Install Vim plugins
-vim +PluginInstall +qall

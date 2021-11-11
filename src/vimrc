@@ -1,114 +1,11 @@
-" ===================
-" Vundle Set-up Start
-" ===================
-
-" Use Vundle to manage dependencies and plugins used by Vim
-" These settings must be called before plugins are sourced
-" https://github.com/gmarik/Vundle.vim#quick-start
-
-set nocompatible                      " Do not run in vi compatability mode
-filetype off                          " Temporarily turn off filetype detection
-set rtp+=~/.vim/bundle/Vundle.vim     " Set Vundle runtime path and initialize
-call vundle#begin()                   " Begin sourcing Vundle plugins
-
-" ==================
-" Vundle Plugin Load
-" ==================
-
-Plugin 'gmarik/Vundle.vim'              " Start things off with Vundle itself
-Plugin 'Valloric/YouCompleteMe'         " Powerful completion engine
-Plugin 'airblade/vim-gitgutter'         " Displays git status in sidebar
-Plugin 'ctrlpvim/ctrlp.vim'             " Fast filepath fuzzy find
-Plugin 'rking/ag.vim'                   " Wrapper around the Silver Searcher
-Plugin 'tpope/vim-fugitive'             " Wrapper around Git
-Plugin 'bling/vim-airline'              " Customized status line
-Plugin 'vim-airline/vim-airline-themes' " Customized status line themes
-Plugin 'Raimondi/delimitMate'           " Automatically adds closing symbol
-Plugin 'tpope/vim-surround'             " Simplifies editing character pairs
-Plugin 'ervandew/supertab'              " Brings together YCM, ultisnips
-Plugin 'scrooloose/syntastic'           " Syntax checker
-Plugin 'fatih/vim-go'                   " Go support
-
-" =================
-" Vundle Set-up End
-" =================
-
-call vundle#end()                   " End sourcing of Vundle plugins
-filetype plugin indent on           " Enable filetype plugin, indent, detection
-
-" =======
-" Airline
-" =======
-
-" Enable support for a unicode symbols provided by a Powerline patched font by
-" populating the g:airline_symbols dictionary
-let g:airline_powerline_fonts=1
-
-" Turn off Git file change info because GitGutter is already showing changes
-let g:airline#extensions#hunks#enabled=0
-
-" If current directory is not git initialized, say so!
-let g:airline_section_b='%{GitHeadOrWarning()}'
-
-function! GitHeadOrWarning()
-  if empty(fugitive#head(7))
-    let status='NOT INITIALIZED'
-  else
-    let status=fugitive#head(7)
-  endif
-  return status
-endfunction
-
-" Change out the file encoding information for a simple 12-hour timestamp
-let g:airline_section_y='%{strftime("%I:%M\ %p")}'
-
-" Set the colorscheme to match colorscheme used by Vim
-let g:airline_theme='base16'
-
-" =========
-" Syntastic
-" =========
-
-" Automatically open and close error window
-let g:syntastic_auto_loc_list=1
-
-" Check syntax on open as well as on save
-let g:syntastic_check_on_open=1
-
-" Specify sidebar symbols when errors are detected
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='✗'
-let g:syntastic_style_error_symbol='✗'
-let g:syntastic_style_warning_symbol='✗'
-
-" =========================
-" YouCompleteMe & UtilSnips
-" =========================
-
-" Make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType='<C-n>'
-
-" Better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-
-" ==========================
-" Simply JavaScript Indenter
-" ==========================
-
-" Do not automatically indent more than one shiftwidth each line
-let g:SimpleJsIndenter_BriefMode=1
-
-" =======
-" Display
-" =======
-
-syntax enable         " Enable syntax highlighting
+" Miselaneous settings
+set nocompatible      " Do not run in vim compatability mode
 set shortmess+=I      " Disable start screen
+
+" Display Settings
+syntax enable         " Enable syntax highlighting
 set number            " Show line numbers
+set relativenumber    " Show relative numbers
 set scrolloff=5       " Minimum number of lines kept above and below the cursor
 set nowrap            " Disable line wrapping
 set colorcolumn=80    " Draw line at this character limit
@@ -116,161 +13,37 @@ set encoding=utf-8    " Enable UTF-8 character encoding
 set laststatus=2      " Always show the status bar at the botom
 set showtabline=2     " Always show the tab bar at the top
 
-" Prevent Vim from auto-hiding concealable characters (e.g. quotes in JSON)
-set conceallevel=0
+" Spaces and tabs
+set expandtab         " Expand tab character to spaces when <Tab> is pressed
+set shiftwidth=4      " Number of spaces added automatically or when indenting
+set softtabstop=4     " Width of Tab character in insertion mode
+set autoindent        " Copy indent from current line when starting new line
+set cindent           " Like `smartindent` but more syntax-aware
 
-" Ensure annoying preview window is not triggered
-set completeopt-=preview
+" Buffer settings
+set tabpagemax=50     " Maximum number of tabs to be opened with `vim -p ...`
+set noswapfile        " Open new buffers without creating a temporary swap file
 
-" ===========
-" Performance
-" ===========
+" Keyboard mappings
+let mapleader=","               " Remap <Leader> to ,
+nnoremap <CR> :noh<CR><CR>      " Clear search highlight with <Return>
+nnoremap tl :tabnext<CR>        " Tab next with tl
+nnoremap th :tabprev<CR>        " Tab prev with th
+map <C-j> :set paste<CR>        " Set paste with <Control>j
+map <C-k> :set nopaste<CR>      " Set nopaste with <Control>k
+inoremap {<CR> {<CR>}<Esc><S-o> " Auto-close and indent after opening {
 
-set relativenumber    " Allow relative numbers
-set nocursorline      " Disable the cursor line
-set foldmethod=manual " Disable smart folding
-set regexpengine=1    " Use old regex engine
+" Filetype overrides
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-" ===========
-" Colorscheme
-" ===========
-
-colorscheme base16-tomorrow
+" Colorscheme settings
 set background=dark
-
+colorscheme base16-tomorrow
 highlight TrailingWhitespace ctermbg=darkred guibg=darkred
 match TrailingWhitespace /\s\+$/
 
-" ====
-" Text
-" ====
-
-set backspace=2   " Allow backspacing over start/end of lines and indentation
-set nofoldenable  " Turn off folds by default
-
-" =============
-" Spaces & Tabs
-" =============
-
-set expandtab     " Expand tab character to spaces when <Tab> is pressed
-set shiftwidth=2  " Number of spaces added automatically or when indenting
-set softtabstop=2 " Width of Tab character in insertion mode
-set autoindent    " Copy indent from current line when starting new line
-set cindent       " Like `smartindent` but more syntax-aware and configurable
-
-" ======
-" Search
-" ======
-
-set noignorecase   " Ignore case while searching
-set hlsearch       " Highlight search results
-
-" =================
-" Opening & Closing
-" =================
-
-set tabpagemax=50  " Maximum number of tabs to be opened with `vim -p ...`
-set noswapfile     " Open new buffers without creating a temporary swap file
-
-" ===============
-" Controlling Vim
-" ===============
-
-let mapleader="," " Remap <Leader> to something easier to reach
-set splitright    " Open new horizontally split windows to the right
-
-" NOTES:
-"
-"   `nnoremap` will remap key bindings, non-recursively, in normal mode
-"   `<Leader>` is a modifier key that is set to <\> by default
-"   `<CR>`     is your <Return> key
-"   `:`        is used to open Vim's command prompt
-"
-
-" Write, quit with `,w` and `,q`
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-
-" Clear search highlighting with `<Return>`
-nnoremap <CR> :noh<CR><CR>
-
-" Switch next, previous tab with `tl`, `th`
-nnoremap tl :tabnext<CR>
-nnoremap th :tabprev<CR>
-
-" Switch top, right, bottom, left split with `sk`, `sl`, `sj`, `sh`
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sj <C-w>j
-nnoremap sh <C-w>h
-
-" Toggle paste mode on, off with `<Control>j`, `<Control>k`
-map <C-j> :set paste<CR>
-map <C-k> :set nopaste<CR>
-
-" Quick editing and sourcing (reloading) of .vimrc config
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
-nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-
-" Pass calls to `K` through to the Silver Searcher
-nnoremap K :Ag<CR>
-
-" Auto-close and indent after opening {
-inoremap {<CR> {<CR>}<Esc><S-o>
-
-" =====
-" CtrlP
-" =====
-
-let g:ctrlp_map='<c-p>'
-let g:ctrlp_cmd='CtrlP'
-
-" Start searching in the current directory
-let g:ctrlp_working_path_mode=0
-
-" Disable the two status lines entirely as their default information is useless
-" via: https://github.com/kien/ctrlp.vim/issues/413
-let g:ctrlp_buffer_func={
-    \ 'enter': 'Function_Name_1',
-    \ 'exit':  'Function_Name_2',
-    \ }
-
-func! Function_Name_1()
-    set laststatus=0
-endfunc
-
-func! Function_Name_2()
-    set laststatus=2
-endfunc
-
-" ===================
-" The Silver Searcher
-" ===================
-
-if executable('ag')
-  set grepprg=ag\ --nogroup " Use :ag instead of :grep
-
-  " Use ag in CtrlP for listing files
-  let g:ctrlp_user_command='ag %s -l --hidden --nocolor --ignore=vendor/* --ignore=capsule8-console/* --ignore=.git/* --ignore=tmp/* --ignore=node_modules/* --ignore=*.jpg --ignore=*.jpeg --ignore=*.png --ignore=*.gif --ignore=*.svg --ignore=*.woff --ignore=*.ttf --ignore=*.eot -g ""'
-
-  let g:ctrlp_use_caching=0 " Disable Caching
-endif
-
-" ==
-" Go
-" ==
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-
-" ===============
-" Theme Overrides
-" ===============
-
+" Colorscheme overrides
 hi Search       ctermfg=00 ctermbg=03
 hi LineNr       ctermfg=12 ctermbg=00
 hi CursorLineNr ctermfg=03 ctermbg=00
@@ -283,19 +56,3 @@ hi TabLineSel   ctermfg=03 ctermbg=00
 hi StatusLine   ctermfg=07 ctermbg=10
 hi StatusLineNC ctermfg=07 ctermbg=00
 hi ColorColumn  ctermfg=01 ctermbg=10
-
-" ====================
-" Indentation Settings
-" ====================
-
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
-autocmd BufEnter *.rs set expandtab shiftwidth=4 softtabstop=4
-
-" Hide library, package and other misc. files from Vim/Ctrl-P
-" NOTE - CtrlP ignores this directive because a custom g:ctrlp_user_command
-" value is specified above to have CtrlP call ag over grep if installed.
-" Because of this, the wildignore value is not referenced. Either a massive
-" list of inline `--ignore` values can be specified in the `ag ...` command
-" above or a .agignore file can be added to your project.
-set wildignore+=*/node_modules/*,*/tmp/*,/vendor/*,*.so,*.swp,*.zip,*/dist/*,*/_site/*
