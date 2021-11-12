@@ -35,4 +35,4 @@ brew install \
 source ~/.bashrc
 
 # Install Terminal.app profile
-open ./mmwtsn.terminal
+open ./Maxwell.terminal
